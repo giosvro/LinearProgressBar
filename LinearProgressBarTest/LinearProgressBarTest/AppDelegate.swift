@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  LinearProgressBarTest
-//
-//  Created by giovanni.s.barros on 22/12/20.
-//
-
 import UIKit
 
 @main
