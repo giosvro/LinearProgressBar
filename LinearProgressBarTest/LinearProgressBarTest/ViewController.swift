@@ -2,25 +2,11 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var benefitLevel: BenefitModel
+    var benefitsLevel: [BenefitModelMock]
     
     init() {
+        benefitsLevel = BenefitModelMock.mockArray()
         super.init(nibName: nil, bundle: nil)
-        benefitLevel = BenefitModel(
-            levels: BenefitLevels(
-                current: BenefitLevel(id: .levelFour,
-                                      name: <#T##String#>,
-                                      purchases: <#T##Int?#>,
-                                      purchasesExpected: <#T##Int#>,
-                                      purchasesPercent: <#T##Double?#>,
-                                      totalSpent: <#T##String?#>,
-                                      totalSpentExpected: <#T##String#>,
-                                      totalSpentPercent: <#T##Double?#>,
-                                      expirationDate: <#T##String?#>
-                ),
-                next: nil
-            )
-        )
         setupView()
     }
     

@@ -30,14 +30,14 @@ protocol BenefitHomeModelProtocol {
     var levels: BenefitLevels { get }
 }
 
-struct BenefitHomeModelMock: BenefitHomeModelProtocol {
+struct BenefitModelMock: BenefitHomeModelProtocol {
     var levels: BenefitLevels
 }
 
-extension BenefitHomeModelMock {
-    static func mockArray() -> [BenefitHomeModelProtocol] {
+extension BenefitModelMock {
+    static func mockArray() -> [BenefitModelMock] {
         return [
-            BenefitHomeModelMock(
+            BenefitModelMock(
                 levels: BenefitLevels(
                     current: BenefitLevel(
                         id: .levelFour,
@@ -53,7 +53,7 @@ extension BenefitHomeModelMock {
                     next: nil
                 )
             ),
-            BenefitHomeModelMock(
+            BenefitModelMock(
                 levels: BenefitLevels(
                     current: BenefitLevel(
                         id: .levelFour,
@@ -69,7 +69,7 @@ extension BenefitHomeModelMock {
                     next: nil
                 )
             ),
-            BenefitHomeModelMock(
+            BenefitModelMock(
                 levels: BenefitLevels(
                     current: BenefitLevel(
                         id: .levelFour,
