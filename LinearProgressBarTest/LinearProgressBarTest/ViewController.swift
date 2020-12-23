@@ -9,7 +9,7 @@ class ViewController: UIViewController {
     init() {
         benefitsLevel = BenefitModelMock.mockArray()
         progressView = ProgressView(frame: .zero)
-        progressView.progress = 0.5
+        progressView.progress = 0
         progressView.icon = iconImage
         super.init(nibName: nil, bundle: nil)
         setupView()

@@ -16,11 +16,11 @@ public final class ProgressView: UIView {
             setProgress()
         }
     }
-
-    private lazy var progressLayer: CAShapeLayer = {
-        let progressLayer = CAShapeLayer()
-        progressLayer.fillColor = progressColor.cgColor
-        return progressLayer
+    
+    private lazy var progressLayer: UIView = {
+        let view = UIView()
+        view.backgroundColor = progressColor
+        return view
     }()
 
     private lazy var iconImageView = UIImageView.Factory.build(
@@ -42,7 +42,6 @@ public final class ProgressView: UIView {
     }
 
     public override func draw(_: CGRect) {
-        layer.insertSublayer(progressLayer, below: iconImageView.layer)
         layer.cornerRadius = frame.height / 2
         iconImageView.layer.cornerRadius = layer.cornerRadius
         setProgress()
@@ -54,12 +53,6 @@ public final class ProgressView: UIView {
         }
         let availableWidth = frame.width - layer.cornerRadius * 2
         let progressWidth = availableWidth * progress
-        progressLayer.path = UIBezierPath(rect: CGRect(
-            x: bounds.origin.x,
-            y: bounds.origin.y,
-            width: layer.cornerRadius + progressWidth,
-            height: bounds.size.height
-        )).cgPath
 
         UIView.animate(withDuration: 3) { [weak self] in
             self?.updateImageConstraint(progressWidth: progressWidth)
@@ -74,6 +67,7 @@ public final class ProgressView: UIView {
 
 extension ProgressView: CodeView {
     public func buildViewHierarchy() {
+        addSubview(progressLayer)
         addSubview(iconImageView)
     }
 
@@ -82,6 +76,10 @@ extension ProgressView: CodeView {
         iconImageView.anchor(heightAnchor: heightAnchor, widthAnchor: heightAnchor)
         iconLeadingConstraint = iconImageView.leadingAnchor.constraint(equalTo: leadingAnchor)
         iconLeadingConstraint?.isActive = true
+        
+        progressLayer.anchorCenterYToSuperview()
+        progressLayer.anchor(heightAnchor: heightAnchor)
+        progressLayer.anchor(leading: self.leadingAnchor, trailing: iconImageView.centerXAnchor)
     }
 
     public func setupAdditionalConfiguration() {
